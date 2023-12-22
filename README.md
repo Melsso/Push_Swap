@@ -104,7 +104,6 @@ during the evaluation process, a binary called checker_OS will be provided to pr
 It will work as follows:
 ```
 bash
-Copy code
 $>ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 6
 $>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
