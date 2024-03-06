@@ -78,9 +78,13 @@ The `push_swap` program takes, as an argument, the stack a formatted as a list o
 
 The program must display the smallest list of instructions possible to sort the stack a, with the smallest number being at the top. Instructions must be separated by a '\n' and nothing else.
 
-The goal is to sort the stack with the lowest possible number of operations. If your program either displays a longer list or if the numbers aren’t sorted properly, your grade will be 0.
+The goal is to sort the stack with the lowest possible number of operations.
 
 If no parameters are specified, the program must not display anything and give the prompt back. In case of an error, it must display "Error" followed by a '\n' on the standard error. Errors include, for example: some arguments aren’t integers, some arguments are bigger than an integer, and/or there are duplicates.
+
+My sorting algorithm uses the radix sort, so first we parse our input in order to simplfy it in order to improve Radix sort performance and also deal with negative numbers since the Radix sort does not work for negative numbers, so we map our numbers like this : consider the following list 3 -5 1 4, it will be mapped
+as follows : -5 1 3 4 --> 0 1 2 3 --> 2 0 1 3, so essentially sorting the 2 1 0 3 sequence with the Radix sort will also sort our initial sequence that is 3 -5 1 4.
+The Radix sort utilizes the bucket sorting algorithm logic, so we continuously sort numbers based on powers of 10 starting from the lowest to the highest power of ten, once we reach the highest our stack should be completely sorted.
 
 ### Usage Example
 
@@ -99,7 +103,7 @@ pa
 $>./push_swap 0 one 2 3
 Error
 ```
-during the evaluation process, a binary called checker_OS will be provided to properly check your program.
+during the evaluation process, a binary called checker will be provided to properly check your program.
 
 It will work as follows:
 ```
@@ -109,6 +113,4 @@ $>ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 $>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
 OK
 ```
-If the program checker_OS displays "KO," it means that your push_swap came up with a list of instructions that doesn’t sort the numbers. The checker_OS program is available in the resources of the project in the intranet.
-
-You can find a description of how it works in the Bonus Part of this document.
+If the program checker displays "KO," it means that your push_swap came up with a list of instructions that doesn’t sort the numbers. The checker program is available in the repository
